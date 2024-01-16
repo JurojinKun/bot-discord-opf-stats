@@ -11,13 +11,14 @@ module.exports = {
         required: true,
     }],
     async execute(interaction) {
-        const nomPersonnage = interaction.options.getString('personnage');
+        let nomPersonnage = interaction.options.getString('personnage');
         const personnage = await Personnage.findOne({ where: { nom: nomPersonnage } });
 
         if (personnage) {
             await interaction.reply(`Personnage: ${personnage.nom}\nVie: ${personnage.vie}\nEndurance: ${personnage.endurance}\nAttaque: ${personnage.attaque}\nDéfense: ${personnage.defense}\nVitesse: ${personnage.vitesse}`);
         } else {
-            await interaction.reply("Je ne suis pas la science infuse, je ne connais pas encore ce personnage !");
+            nomPersonnage = nomPersonnage.charAt(0).toUpperCase() + nomPersonnage.slice(1);
+            await interaction.reply(`Je ne suis pas la science infuse, je ne connais pas encore ce ${nomPersonnage} !`);
         }
     }
 };
