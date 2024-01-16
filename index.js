@@ -28,6 +28,9 @@ client.once('ready', () => {
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
 
+    const validChannel = process.env.CHANNEL_ID;
+    if (interaction.channelId !== validChannel) return interaction.reply({ content: 'Je ne peux pas te répondre dans ce channel, retrouve moi dans le channel dédié !', ephemeral: true });
+
     const command = client.commands.get(interaction.commandName);
 
     if (!command) return;
