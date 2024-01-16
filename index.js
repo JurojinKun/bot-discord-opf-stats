@@ -3,6 +3,11 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('fs');
 const Personnage = require('./models/personnage');
 
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+app.listen(port, () => console.log(`Server running on port ${port}`));
+
 // Création d'une nouvelle instance du client Discord
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
