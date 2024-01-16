@@ -8,13 +8,13 @@ module.exports = {
     options: [{
         type: ApplicationCommandOptionType.String,
         name: 'stats',
-        description: 'Stats du personnage sous forme personnage/vie/endurance/attaque/defense/vitesse',
+        description: 'Stats du personnage sous forme nom/vie/endurance/attaque/defense/vitesse',
         required: true,
     }],
     async execute(interaction) {
         const stats = interaction.options.getString('stats').split('/');
         if (stats.length !== 6) {
-            return await interaction.reply("Allume ton cerveau, je t'ai dit le format de saisie. Utilise exactement ça: personnage/vie/endurance/attaque/defense/vitesse");
+            return await interaction.reply("Allume ton cerveau, je t'ai dit le format de saisie. Utilise exactement ça: nom/vie/endurance/attaque/defense/vitesse");
         }
 
         let [nom, vie, endurance, attaque, defense, vitesse] = stats;
