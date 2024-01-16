@@ -18,7 +18,7 @@ module.exports = {
             await interaction.reply(`Personnage: ${personnage.nom}\nVie: ${personnage.vie}\nEndurance: ${personnage.endurance}\nAttaque: ${personnage.attaque}\nDéfense: ${personnage.defense}\nVitesse: ${personnage.vitesse}`);
         } else {
             nomPersonnage = nomPersonnage.charAt(0).toUpperCase() + nomPersonnage.slice(1);
-            await interaction.reply(`Je ne suis pas la science infuse, je ne connais pas encore ce ${nomPersonnage} !`);
+            await interaction.reply(`Je n'ai pas la science infuse, je ne connais pas encore ce ${nomPersonnage} !`);
         }
     }
 };
