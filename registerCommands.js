@@ -16,6 +16,23 @@ const rest = new REST({ version: '9' }).setToken(process.env.DISCORD_BOT_TOKEN);
 
 (async () => {
     try {
+        console.log('Début de la suppression des commandes slash globales.');
+
+        await rest.put(
+            Routes.applicationCommands(process.env.APP_ID),
+            { body: [] } // Un tableau vide désinscrit toutes les commandes
+        );
+
+        console.log('Suppression réussie des commandes slash globales.');
+
+        console.log('Début de la suppression des commandes slash spécifique au serveur.');
+
+        await rest.put(
+            Routes.applicationGuildCommands(process.env.APP_ID, process.env.SERVER_ID),
+            { body: [] });
+
+        console.log('Suppression réussie des commandes slash spécifique au serveur.');
+
         console.log('Début de l\'enregistrement des commandes slash.');
 
         await rest.put(
