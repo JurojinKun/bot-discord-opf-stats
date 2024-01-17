@@ -3,27 +3,30 @@ const Personnage = require('../models/personnage');
 const capitalizeEachWord = require('../utils/utils');
 
 module.exports = {
-    name: 'get', // Le nom de la commande slash
-    description: 'Recherche les stats d\'un personnage par son nom',
+    name: 'delete',
+    description: 'Supprime un personnage et ses stats par son nom',
     options: [{
         type: ApplicationCommandOptionType.String,
         name: 'personnage',
-        description: 'Le nom du personnage à rechercher',
+        description: 'Le nom du personnage à supprimer',
         required: true,
     }],
     async execute(interaction) {
         let nomPersonnage = interaction.options.getString('personnage');
+
         try {
             const personnage = await Personnage.findOne({ where: { nom: nomPersonnage } });
             if (personnage) {
-                await interaction.reply(`Personnage: ${personnage.nom}\nVie: ${personnage.vie}\nEndurance: ${personnage.endurance}\nAttaque: ${personnage.attaque}\nDéfense: ${personnage.defense}\nVitesse: ${personnage.vitesse}`);
+                await Personnage.destroy({ where: { nom: nomPersonnage } });
+                nomPersonnage = capitalizeEachWord(nomPersonnage);
+                await interaction.reply(`${nomPersonnage} supprimé(e) avec succès !`);
             } else {
                 nomPersonnage = capitalizeEachWord(nomPersonnage);
-                await interaction.reply(`Je n'ai pas la science infuse, je ne connais pas encore ce ${nomPersonnage} !`);
+                await interaction.reply(`Jeune baltrou, tu essayes de supprimer quelque chose qui n'existe pas ? Je ne connais pas encore ce ${nomPersonnage} !`);
             }
         } catch (e) {
             console.log(e);
-            await interaction.reply({ content: 'Une erreur est survenue lors de la recherche du personnage', ephemeral: true });
+            await interaction.reply({ content: 'Une erreur est survenue lors de la suppression du personnage', ephemeral: true });
         }
     }
 };
