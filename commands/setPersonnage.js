@@ -1,6 +1,6 @@
 const { ApplicationCommandOptionType } = require('discord-api-types/v9');
 const Personnage = require('../models/personnage');
-const { BOOLEAN } = require('sequelize');
+const capitalizeEachWord = require('../utils/utils');
 
 module.exports = {
     name: 'set',
@@ -12,13 +12,15 @@ module.exports = {
         required: true,
     }],
     async execute(interaction) {
-        const stats = interaction.options.getString('stats').split('/');
+        const stats = interaction.options.getString('stats').split('/')
+            .map(element => element.trim());
+        console.log(stats);
         if (stats.length !== 6) {
             return await interaction.reply("Allume ton cerveau, je t'ai dit le format de saisie. Utilise exactement ça: nom/vie/endurance/attaque/defense/vitesse");
         }
 
         let [nom, vie, endurance, attaque, defense, vitesse] = stats;
-        nom = nom.charAt(0).toUpperCase() + nom.slice(1).toLowerCase();
+        nom = capitalizeEachWord(nom);
 
         // Vérifier si le personnage existe déjà
         const personnageExistant = await Personnage.findOne({ where: { nom: nom } });

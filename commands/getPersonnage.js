@@ -1,5 +1,6 @@
 const { ApplicationCommandOptionType } = require('discord-api-types/v9');
 const Personnage = require('../models/personnage');
+const capitalizeEachWord = require('../utils/utils');
 
 module.exports = {
     name: 'get', // Le nom de la commande slash
@@ -17,7 +18,7 @@ module.exports = {
         if (personnage) {
             await interaction.reply(`Personnage: ${personnage.nom}\nVie: ${personnage.vie}\nEndurance: ${personnage.endurance}\nAttaque: ${personnage.attaque}\nDéfense: ${personnage.defense}\nVitesse: ${personnage.vitesse}`);
         } else {
-            nomPersonnage = nomPersonnage.charAt(0).toUpperCase() + nomPersonnage.slice(1);
+            nomPersonnage = capitalizeEachWord(nomPersonnage);
             await interaction.reply(`Je n'ai pas la science infuse, je ne connais pas encore ce ${nomPersonnage} !`);
         }
     }
