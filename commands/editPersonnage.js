@@ -1,5 +1,5 @@
 const { ApplicationCommandOptionType } = require('discord.js');
-const Personnage = require('../models/personnage');
+const { Personnage, Statistiques } = require('../models');
 const capitalizeEachWord = require('../utils/utils');
 
 module.exports = {
@@ -11,12 +11,6 @@ module.exports = {
             name: 'personnage',
             description: 'Le nom actuel du personnage',
             required: true
-        },
-        {
-            type: ApplicationCommandOptionType.String,
-            name: 'nouveaunom',
-            description: 'Le nouveau nom du personnage',
-            required: false
         },
         {
             type: ApplicationCommandOptionType.Integer,
@@ -51,7 +45,6 @@ module.exports = {
     ],
     async execute(interaction) {
         const nom = interaction.options.getString('personnage');
-        const nouveauNom = interaction.options.getString('nouveaunom');
         const vie = interaction.options.getInteger('vie');
         const endurance = interaction.options.getInteger('endurance');
         const attaque = interaction.options.getInteger('attaque');
@@ -62,28 +55,29 @@ module.exports = {
         try {
             const personnage = await Personnage.findOne({ where: { nom: nom } });
             if (!personnage) {
-                return interaction.reply(`Si tu veux éditer un personnage, commence par avoir un QI plus élévé qu'Azmog. ${capitalizedName} n'existe pas encore donc tu ne peux pas l'éditer.`);
+                return interaction.reply(`Si tu veux éditer un personnage, commence par avoir un QI plus élévé qu'Azmog. ${capitalizedName} n'est même pas encore sur le jeu.`);
             }
 
-            if (!nouveauNom && vie === null && endurance === null && attaque === null && defense === null && vitesse === null) {
+            if (vie === null && endurance === null && attaque === null && defense === null && vitesse === null) {
                 return interaction.reply(`Donc tu me demandes d'éditer mais tu ne modifies rien ? La prochaine fois je t'envoie la souris de charchar dans ta grosse tête !`);
             }
 
-            // Mettre à jour le personnage
-            if (nouveauNom) personnage.nom = capitalizeEachWord(nouveauNom);
-            if (vie !== null) personnage.vie = vie;
-            if (endurance !== null) personnage.endurance = endurance;
-            if (attaque !== null) personnage.attaque = attaque;
-            if (defense !== null) personnage.defense = defense;
-            if (vitesse !== null) personnage.vitesse = vitesse;
+            // Rechercher les statistiques associées au personnage
+            const statistique = await Statistiques.findOne({ where: { personnage_id: personnage.id } });
 
-            await personnage.save();
-
-            if (nouveauNom) {
-                await interaction.reply(`${capitalizeEachWord(nouveauNom)} a été mis à jour avec succès !`);
+            // Mettre à jour des statistiques pour le personnage
+            if (!statistique) {
+                return await interaction.reply(`Si tu veux éditer un personnage, commence par avoir un QI plus élévé qu'Azmog. Les stats de ${capitalizedName} n'existe pas encore donc tu ne peux pas l'éditer.`);
             } else {
-                await interaction.reply(`${capitalizedName} a été mis à jour avec succès !`);
+                if (vie !== null) statistique.vie = vie;
+                if (endurance !== null) statistique.endurance = endurance;
+                if (attaque !== null) statistique.attaque = attaque;
+                if (defense !== null) statistique.defense = defense;
+                if (vitesse !== null) statistique.vitesse = vitesse;
+                await statistique.save();
             }
+
+            await interaction.reply(`Les informations de ${capitalizedName} ont été mises à jour avec succès !`);
         } catch (e) {
             console.log(e);
             await interaction.reply({ content: 'Une erreur est survenue lors de la modification du personnage', ephemeral: true });

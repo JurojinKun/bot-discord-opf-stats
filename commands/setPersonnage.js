@@ -1,5 +1,5 @@
 const { ApplicationCommandOptionType } = require('discord-api-types/v9');
-const Personnage = require('../models/personnage');
+const { Personnage, Statistiques } = require('../models');
 const capitalizeEachWord = require('../utils/utils');
 
 module.exports = {
@@ -23,12 +23,21 @@ module.exports = {
 
         try {
             // Vérifier si le personnage existe déjà
-            const personnageExistant = await Personnage.findOne({ where: { nom: nom } });
-            if (personnageExistant) {
+            let personnage = await Personnage.findOne({ where: { nom: nom } });
+            if (!personnage) {
+                // Si le personnage n'existe pas
+                return await interaction.reply(`${nom} n'existe même pas dans le jeu pour le moment mais bien essayé toxic boy !`);
+            }
+
+            // Vérifier si des statistiques existent déjà pour ce personnage
+            const statsExistantes = await Statistiques.findOne({ where: { personnage_id: personnage.id } });
+            if (statsExistantes) {
                 return await interaction.reply(`${nom} existe déjà dans la base de données. Tu dors au fond de la classe à côté du radiateur ?`);
             }
-            await Personnage.create({
-                nom,
+
+            // Créer une nouvelle entrée de statistiques pour ce personnage
+            await Statistiques.create({
+                personnage_id: personnage.id,
                 vie: parseInt(vie),
                 endurance: parseInt(endurance),
                 attaque: parseInt(attaque),
