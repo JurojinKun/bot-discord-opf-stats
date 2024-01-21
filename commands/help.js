@@ -8,6 +8,7 @@ module.exports = {
 - **/set** : Enregistre un nouveau personnage avec ses stats (format : nom/vie/endurance/attaque/defense/vitesse).
 - **/edit** : Modifie les informations d'un personnage (le nom actuel est obligatoire, les autres champs sont optionnels).
 - **/delete** : Supprime un personnage et ses stats par son nom (attention cette action est irréversible et il n'y aura pas de demande de confirmation avant de supprimer).
+- **/no-stats** : Liste les personnages étant sur le jeu mais qui n'ont pas encore leurs stats sauvegardées.
 
 Utilise chaque commande pour plus de détails sur son utilisation.
         `;
