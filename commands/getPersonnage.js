@@ -1,9 +1,9 @@
 const { ApplicationCommandOptionType } = require('discord-api-types/v9');
-const Personnage = require('../models/personnage');
+const { Personnage, Statistiques } = require('../models');
 const capitalizeEachWord = require('../utils/utils');
 
 module.exports = {
-    name: 'get', // Le nom de la commande slash
+    name: 'get',
     description: 'Recherche les stats d\'un personnage par son nom',
     options: [{
         type: ApplicationCommandOptionType.String,
@@ -14,12 +14,17 @@ module.exports = {
     async execute(interaction) {
         let nomPersonnage = interaction.options.getString('personnage');
         try {
-            const personnage = await Personnage.findOne({ where: { nom: nomPersonnage } });
-            if (personnage) {
-                await interaction.reply(`Personnage: ${personnage.nom}\nVie: ${personnage.vie}\nEndurance: ${personnage.endurance}\nAttaque: ${personnage.attaque}\nDéfense: ${personnage.defense}\nVitesse: ${personnage.vitesse}`);
+            const personnage = await Personnage.findOne({
+                where: { nom: nomPersonnage },
+                include: [{ model: Statistiques, as: 'statistiques' }]
+            });
+
+            if (personnage && personnage.statistiques && personnage.statistiques.length > 0) {
+                const stats = personnage.statistiques[0].dataValues;
+                await interaction.reply(`Personnage: ${personnage.nom}\nVie: ${stats.vie}\nEndurance: ${stats.endurance}\nAttaque: ${stats.attaque}\nDéfense: ${stats.defense}\nVitesse: ${stats.vitesse}`);
             } else {
                 nomPersonnage = capitalizeEachWord(nomPersonnage);
-                await interaction.reply(`Je n'ai pas la science infuse, je ne connais pas encore ce ${nomPersonnage} !`);
+                await interaction.reply(`Je n'ai pas la science infuse, ${nomPersonnage} n'a pas encore ses stats sauvegardées !`);
             }
         } catch (e) {
             console.log(e);

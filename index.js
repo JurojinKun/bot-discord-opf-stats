@@ -1,7 +1,6 @@
 require('dotenv').config();
 const { Client, GatewayIntentBits, Collection } = require('discord.js');
 const fs = require('fs');
-const Personnage = require('./models/personnage');
 
 const express = require('express');
 const app = express();
@@ -26,7 +25,6 @@ for (const file of commandFiles) {
 // Événement 'ready' pour signaler que le bot est connecté et prêt
 client.once('ready', () => {
     console.log('Le bot est en ligne!');
-    Personnage.sync(); // Synchronisation avec la base de données
 });
 
 // Gestionnaire d'interactions pour les commandes slash

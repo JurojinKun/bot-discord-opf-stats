@@ -1,32 +1,33 @@
 const { ApplicationCommandOptionType } = require('discord-api-types/v9');
-const Personnage = require('../models/personnage');
+const { Personnage, Statistiques } = require('../models');
 const capitalizeEachWord = require('../utils/utils');
 
 module.exports = {
     name: 'delete',
-    description: 'Supprime un personnage et ses stats par son nom',
+    description: 'Supprime les stats d\'un personnage par son nom',
     options: [{
         type: ApplicationCommandOptionType.String,
         name: 'personnage',
-        description: 'Le nom du personnage à supprimer',
+        description: 'Le nom du personnage dont les stats doivent être supprimées',
         required: true,
     }],
     async execute(interaction) {
-        let nomPersonnage = interaction.options.getString('personnage');
+        const nomPersonnage = capitalizeEachWord(interaction.options.getString('personnage'));
 
         try {
             const personnage = await Personnage.findOne({ where: { nom: nomPersonnage } });
-            if (personnage) {
-                await Personnage.destroy({ where: { nom: nomPersonnage } });
-                nomPersonnage = capitalizeEachWord(nomPersonnage);
-                await interaction.reply(`${nomPersonnage} supprimé(e) avec succès !`);
-            } else {
-                nomPersonnage = capitalizeEachWord(nomPersonnage);
-                await interaction.reply(`Jeune baltrou, tu essayes de supprimer quelque chose qui n'existe pas ? Je ne connais pas encore ce ${nomPersonnage} !`);
+            const statistique = await Statistiques.findOne({ where: { personnage_id: personnage.id } });
+            if (!personnage || !statistique) {
+                return await interaction.reply(`Je ne peux pas supprimer les stats d'un personnage qui n'existe pas. ${nomPersonnage} n'est pas dans ma base de données.`);
             }
+
+            // Supprimer les statistiques associées à ce personnage
+            await Statistiques.destroy({ where: { personnage_id: personnage.id } });
+
+            await interaction.reply(`Les stats de ${nomPersonnage} ont été supprimées avec succès.`);
         } catch (e) {
             console.log(e);
-            await interaction.reply({ content: 'Une erreur est survenue lors de la suppression du personnage', ephemeral: true });
+            await interaction.reply({ content: 'Une erreur est survenue lors de la suppression des stats du personnage', ephemeral: true });
         }
     }
 };
