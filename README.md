@@ -1,5 +1,5 @@
 # bot-discord-opf-stats
-Bot discord get and set stats opf
+Bot discord to get, set, edit, delete stats for opf
 
 ## command start dev
 node index.js

@@ -10,6 +10,10 @@ module.exports = (sequelize) => {
         nom: {
             type: DataTypes.STRING,
             allowNull: false
+        },
+        unlockable: {
+            type: DataTypes.BOOLEAN,
+            defaultValue: false
         }
     }, {
         timestamps: false,

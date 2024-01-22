@@ -12,6 +12,11 @@ const Statistiques = require('./statistiques')(sequelize);
 Personnage.hasMany(Statistiques, { foreignKey: 'personnage_id', as: 'statistiques' });
 Statistiques.belongsTo(Personnage, { foreignKey: 'personnage_id' });
 
+(async () => {
+    await sequelize.sync({ force: false });
+    console.log("All models were synchronized successfully.");
+})();
+
 module.exports = {
     sequelize,
     Personnage,
