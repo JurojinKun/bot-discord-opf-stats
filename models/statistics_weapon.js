@@ -1,17 +1,17 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    const Statistiques = sequelize.define('Statistique', {
+    const StatisticsWeapon = sequelize.define('statistics_weapon', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
             autoIncrement: true
         },
-        personnage_id: {
+        weapon_id: {
             type: DataTypes.INTEGER,
             allowNull: false,
             references: {
-                model: 'personnages',
+                model: 'weapon',
                 key: 'id'
             }
         },
@@ -22,8 +22,8 @@ module.exports = (sequelize) => {
         vitesse: DataTypes.INTEGER
     }, {
         timestamps: false,
-        tableName: 'statistiques'
+        tableName: 'statistics_weapons'
     });
 
-    return Statistiques;
+    return StatisticsWeapon;
 };

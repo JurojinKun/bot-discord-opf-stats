@@ -1,9 +1,9 @@
 const { ApplicationCommandOptionType } = require('discord-api-types/v9');
-const { Personnage, Statistiques } = require('../models');
+const { Character, StatisticsCharacter } = require('../models');
 const capitalizeEachWord = require('../utils/utils');
 
 module.exports = {
-    name: 'get',
+    name: 'get-p',
     description: 'Recherche les stats d\'un personnage par son nom',
     options: [{
         type: ApplicationCommandOptionType.String,
@@ -14,13 +14,13 @@ module.exports = {
     async execute(interaction) {
         let nomPersonnage = interaction.options.getString('personnage');
         try {
-            const personnage = await Personnage.findOne({
+            const personnage = await Character.findOne({
                 where: { nom: nomPersonnage },
-                include: [{ model: Statistiques, as: 'statistiques' }]
+                include: [{ model: StatisticsCharacter, as: 'statistics_character' }]
             });
 
-            if (personnage && personnage.statistiques && personnage.statistiques.length > 0) {
-                const stats = personnage.statistiques[0].dataValues;
+            if (personnage && personnage.statistics_character && personnage.statistics_character.length > 0) {
+                const stats = personnage.statistics_character[0].dataValues;
                 await interaction.reply(`Personnage: ${personnage.nom}\nVie: ${stats.vie}\nEndurance: ${stats.endurance}\nAttaque: ${stats.attaque}\nDéfense: ${stats.defense}\nVitesse: ${stats.vitesse}`);
             } else {
                 nomPersonnage = capitalizeEachWord(nomPersonnage);

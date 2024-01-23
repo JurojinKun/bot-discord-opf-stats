@@ -1,9 +1,9 @@
 const { ApplicationCommandOptionType } = require('discord.js');
-const { Personnage, Statistiques } = require('../models');
+const { Character, StatisticsCharacter } = require('../models');
 const capitalizeEachWord = require('../utils/utils');
 
 module.exports = {
-    name: 'edit',
+    name: 'edit-p',
     description: 'Modifie les informations d\'un personnage',
     options: [
         {
@@ -53,7 +53,7 @@ module.exports = {
         const capitalizedName = capitalizeEachWord(nom);
 
         try {
-            const personnage = await Personnage.findOne({ where: { nom: nom } });
+            const personnage = await Character.findOne({ where: { nom: nom } });
             if (!personnage) {
                 return interaction.reply(`Si tu veux éditer un personnage, commence par avoir un QI plus élévé qu'Azmog. ${capitalizedName} n'est même pas encore sur le jeu.`);
             }
@@ -63,7 +63,7 @@ module.exports = {
             }
 
             // Rechercher les statistiques associées au personnage
-            const statistique = await Statistiques.findOne({ where: { personnage_id: personnage.id } });
+            const statistique = await StatisticsCharacter.findOne({ where: { character_id: personnage.id } });
 
             // Mettre à jour des statistiques pour le personnage
             if (!statistique) {
