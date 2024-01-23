@@ -5,12 +5,20 @@ const sequelize = new Sequelize(process.env.DB_NAME, process.env.DB_USER, proces
 });
 
 // Importation des modèles
-const Personnage = require('./personnage')(sequelize);
-const Statistiques = require('./statistiques')(sequelize);
+const Character = require('./character')(sequelize);
+const Weapon = require('./weapon')(sequelize);
+const Accessory = require('./accessory')(sequelize);
+const StatisticsCharacter = require('./statistics_character')(sequelize);
+const StatisticsWeapon = require('./statistics_weapon')(sequelize);
+const StatisticsAccessory = require('./statistics_accessory')(sequelize);
 
 // Définition des relations
-Personnage.hasMany(Statistiques, { foreignKey: 'personnage_id', as: 'statistiques' });
-Statistiques.belongsTo(Personnage, { foreignKey: 'personnage_id' });
+Character.hasMany(StatisticsCharacter, { foreignKey: 'character_id', as: 'statistics_character' });
+StatisticsCharacter.belongsTo(Character, { foreignKey: 'character_id' });
+Weapon.hasMany(StatisticsWeapon, { foreignKey: 'weapon_id', as: 'statistics_weapon' });
+StatisticsWeapon.belongsTo(Weapon, { foreignKey: 'weapon_id' });
+Accessory.hasMany(StatisticsAccessory, { foreignKey: 'accessory_id', as: 'statistics_accessory' });
+StatisticsAccessory.belongsTo(Accessory, { foreignKey: 'accessory_id' });
 
 (async () => {
     await sequelize.sync({ force: false });
@@ -19,6 +27,10 @@ Statistiques.belongsTo(Personnage, { foreignKey: 'personnage_id' });
 
 module.exports = {
     sequelize,
-    Personnage,
-    Statistiques
+    Character,
+    Weapon,
+    Accessory,
+    StatisticsCharacter,
+    StatisticsWeapon,
+    StatisticsAccessory
 };

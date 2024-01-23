@@ -1,7 +1,7 @@
 const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
-    const Personnage = sequelize.define('Personnage', {
+    const Weapon = sequelize.define('weapon', {
         id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -10,15 +10,11 @@ module.exports = (sequelize) => {
         nom: {
             type: DataTypes.STRING,
             allowNull: false
-        },
-        unlockable: {
-            type: DataTypes.BOOLEAN,
-            defaultValue: false
         }
     }, {
         timestamps: false,
-        tableName: 'personnages'
+        tableName: 'weapons'
     });
 
-    return Personnage;
+    return Weapon;
 };

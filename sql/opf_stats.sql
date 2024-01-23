@@ -4,7 +4,7 @@
 -- https://tableplus.com/
 --
 -- Database: opf_stats
--- Generation Time: 2024-01-22 12:09:34.5160
+-- Generation Time: 2024-01-23 18:45:28.1420
 -- -------------------------------------------------------------
 
 
@@ -18,29 +18,75 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-DROP TABLE IF EXISTS `personnages`;
-CREATE TABLE `personnages` (
+DROP TABLE IF EXISTS `accessories`;
+CREATE TABLE `accessories` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `characters`;
+CREATE TABLE `characters` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   `unlockable` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `statistiques`;
-CREATE TABLE `statistiques` (
+DROP TABLE IF EXISTS `statistics_accessories`;
+CREATE TABLE `statistics_accessories` (
   `id` int NOT NULL AUTO_INCREMENT,
-  `personnage_id` int DEFAULT NULL,
+  `accessory_id` int DEFAULT NULL,
   `vie` int DEFAULT NULL,
   `endurance` int DEFAULT NULL,
   `attaque` int DEFAULT NULL,
   `defense` int DEFAULT NULL,
   `vitesse` int DEFAULT NULL,
   PRIMARY KEY (`id`),
-  KEY `personnage_id` (`personnage_id`),
-  CONSTRAINT `statistiques_ibfk_1` FOREIGN KEY (`personnage_id`) REFERENCES `personnages` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=122 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  KEY `accessory_id` (`accessory_id`),
+  CONSTRAINT `statistics_accessories_ibfk_1` FOREIGN KEY (`accessory_id`) REFERENCES `accessories` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-INSERT INTO `personnages` (`id`, `nom`, `unlockable`) VALUES
+DROP TABLE IF EXISTS `statistics_characters`;
+CREATE TABLE `statistics_characters` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `character_id` int DEFAULT NULL,
+  `vie` int DEFAULT NULL,
+  `endurance` int DEFAULT NULL,
+  `attaque` int DEFAULT NULL,
+  `defense` int DEFAULT NULL,
+  `vitesse` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `character_id` (`character_id`),
+  CONSTRAINT `statistics_characters_ibfk_1` FOREIGN KEY (`character_id`) REFERENCES `characters` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=130 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `statistics_weapons`;
+CREATE TABLE `statistics_weapons` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `weapon_id` int DEFAULT NULL,
+  `vie` int DEFAULT NULL,
+  `endurance` int DEFAULT NULL,
+  `attaque` int DEFAULT NULL,
+  `defense` int DEFAULT NULL,
+  `vitesse` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `weapon_id` (`weapon_id`),
+  CONSTRAINT `statistics_weapons_ibfk_1` FOREIGN KEY (`weapon_id`) REFERENCES `weapons` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `weapons`;
+CREATE TABLE `weapons` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+INSERT INTO `accessories` (`id`, `nom`) VALUES
+(1, 'Boucles Zoro'),
+(2, 'Tutu');
+
+INSERT INTO `characters` (`id`, `nom`, `unlockable`) VALUES
 (1, 'Ace', 0),
 (2, 'Bon Clay', 1),
 (3, 'Crocodile', 1),
@@ -207,7 +253,10 @@ INSERT INTO `personnages` (`id`, `nom`, `unlockable`) VALUES
 (164, 'Pekoms', 0),
 (165, 'Raizo', 0);
 
-INSERT INTO `statistiques` (`id`, `personnage_id`, `vie`, `endurance`, `attaque`, `defense`, `vitesse`) VALUES
+INSERT INTO `statistics_accessories` (`id`, `accessory_id`, `vie`, `endurance`, `attaque`, `defense`, `vitesse`) VALUES
+(1, 1, 3, 10, 2, 0, 5);
+
+INSERT INTO `statistics_characters` (`id`, `character_id`, `vie`, `endurance`, `attaque`, `defense`, `vitesse`) VALUES
 (1, 138, 26, 21, 18, 25, 19),
 (2, 61, 30, 24, 19, 35, 29),
 (3, 81, 32, 23, 19, 32, 16),
@@ -323,7 +372,24 @@ INSERT INTO `statistiques` (`id`, `personnage_id`, `vie`, `endurance`, `attaque`
 (113, 120, 23, 17, 33, 34, 32),
 (114, 37, 31, 21, 32, 17, 23),
 (115, 68, 22, 26, 28, 28, 34),
-(116, 62, 31, 22, 30, 19, 33);
+(116, 62, 31, 22, 30, 19, 33),
+(122, 132, 20, 22, 21, 22, 19),
+(123, 85, 25, 27, 21, 16, 26),
+(124, 7, 25, 28, 19, 26, 19),
+(125, 149, 28, 20, 34, 22, 17),
+(127, 76, 32, 20, 19, 32, 26),
+(128, 31, 26, 33, 30, 29, 34);
+
+INSERT INTO `statistics_weapons` (`id`, `weapon_id`, `vie`, `endurance`, `attaque`, `defense`, `vitesse`) VALUES
+(1, 1, 0, 0, 20, 0, 15),
+(2, 2, 0, 0, 13, 0, 22),
+(3, 3, 0, 0, 0, 18, 14);
+
+INSERT INTO `weapons` (`id`, `nom`) VALUES
+(1, 'Kitetsu'),
+(2, 'Durandal'),
+(3, 'Climatackt'),
+(4, 'Punisher');
 
 
 

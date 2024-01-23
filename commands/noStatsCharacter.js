@@ -1,4 +1,4 @@
-const { Personnage, Statistiques } = require('../models');
+const { Character, StatisticsCharacter } = require('../models');
 
 module.exports = {
     name: 'no-stats',
@@ -7,24 +7,24 @@ module.exports = {
     async execute(interaction) {
         try {
             // Personnages non déblocables sans statistiques
-            const personnagesNonDeblocablesSansStats = await Personnage.findAll({
+            const personnagesNonDeblocablesSansStats = await Character.findAll({
                 include: [{
-                    model: Statistiques,
-                    as: 'statistiques',
+                    model: StatisticsCharacter,
+                    as: 'statistics_character',
                     required: false
                 }],
-                where: { '$statistiques.id$': null, unlockable: false },
+                where: { '$statistics_character.id$': null, unlockable: false },
                 order: [['nom', 'ASC']]
             });
 
             // Personnages déblocables sans statistiques
-            const personnagesDeblocablesSansStats = await Personnage.findAll({
+            const personnagesDeblocablesSansStats = await Character.findAll({
                 include: [{
-                    model: Statistiques,
-                    as: 'statistiques',
+                    model: StatisticsCharacter,
+                    as: 'statistics_character',
                     required: false
                 }],
-                where: { '$statistiques.id$': null, unlockable: true },
+                where: { '$statistics_character.id$': null, unlockable: true },
                 order: [['nom', 'ASC']]
             });
 
