@@ -34,15 +34,15 @@ module.exports = {
             if (personnagesNonDeblocablesSansStats.length > 0) {
                 const nomsNonDeblocables = personnagesNonDeblocablesSansStats.map(p => p.nom).join('\n');
                 reponse += `**Personnages non déblocables sans statistiques :**\n${nomsNonDeblocables}\n\n`;
+            } else {
+                reponse += `**Personnages non déblocables sans statistiques :**\nTous les personnages non déblocables ont leurs statistiques sauvegardées, félicitations !\n\n`;
             }
 
             if (personnagesDeblocablesSansStats.length > 0) {
                 const nomsDeblocables = personnagesDeblocablesSansStats.map(p => p.nom).join('\n');
                 reponse += `**Personnages déblocables sans statistiques :**\n${nomsDeblocables}`;
-            }
-
-            if (reponse === '') {
-                reponse = 'Tous les personnages ont des statistiques sauvegardées, félicitations à tous !';
+            } else {
+                reponse += `**Personnages déblocables sans statistiques :**\nTous les personnages déblocables ont leurs statistiques sauvegardées, félicitations !`;
             }
 
             await interaction.reply(reponse);

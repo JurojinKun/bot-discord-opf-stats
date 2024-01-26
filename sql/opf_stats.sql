@@ -4,7 +4,7 @@
 -- https://tableplus.com/
 --
 -- Database: opf_stats
--- Generation Time: 2024-01-23 18:45:28.1420
+-- Generation Time: 2024-01-25 12:27:59.5430
 -- -------------------------------------------------------------
 
 
@@ -23,7 +23,7 @@ CREATE TABLE `accessories` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 DROP TABLE IF EXISTS `characters`;
 CREATE TABLE `characters` (
@@ -80,11 +80,22 @@ CREATE TABLE `weapons` (
   `id` int NOT NULL AUTO_INCREMENT,
   `nom` varchar(255) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 INSERT INTO `accessories` (`id`, `nom`) VALUES
 (1, 'Boucles Zoro'),
-(2, 'Tutu');
+(2, 'Tutu'),
+(3, 'Boucles Boa'),
+(4, 'Menottes'),
+(5, 'Cigare'),
+(6, 'Foulard'),
+(7, 'Masque Sniperking'),
+(8, 'Parchemin'),
+(9, 'Escargophone'),
+(10, 'Sac Plastique'),
+(11, 'Parapluie'),
+(12, 'Chapeau Saldeath'),
+(13, 'Accessoires Ace');
 
 INSERT INTO `characters` (`id`, `nom`, `unlockable`) VALUES
 (1, 'Ace', 0),
@@ -378,7 +389,8 @@ INSERT INTO `statistics_characters` (`id`, `character_id`, `vie`, `endurance`, `
 (124, 7, 25, 28, 19, 26, 19),
 (125, 149, 28, 20, 34, 22, 17),
 (127, 76, 32, 20, 19, 32, 26),
-(128, 31, 26, 33, 30, 29, 34);
+(128, 31, 26, 33, 30, 29, 34),
+(129, 157, 25, 20, 29, 18, 30);
 
 INSERT INTO `statistics_weapons` (`id`, `weapon_id`, `vie`, `endurance`, `attaque`, `defense`, `vitesse`) VALUES
 (1, 1, 0, 0, 20, 0, 15),
@@ -389,7 +401,21 @@ INSERT INTO `weapons` (`id`, `nom`) VALUES
 (1, 'Kitetsu'),
 (2, 'Durandal'),
 (3, 'Climatackt'),
-(4, 'Punisher');
+(4, 'Punisher'),
+(5, 'Yubashiri'),
+(6, 'Bazooka'),
+(7, 'Minigun'),
+(8, 'Kiribashi'),
+(9, 'Fusil'),
+(10, 'Dial'),
+(11, 'Jitte'),
+(12, 'Tuyau'),
+(13, 'Soul Solid'),
+(14, 'Kabuto'),
+(15, 'Funkfreed'),
+(16, 'Raiu'),
+(17, 'Murakumogiri'),
+(18, 'Warabide');
 
 
 
