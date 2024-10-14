@@ -18,9 +18,15 @@ module.exports = {
 
 **Commandes accessoires disponibles :**
 - **/get-a** : Recherche les stats d'un accessoire par son nom.
-- **/set-a** : Enregistre un nouvel accessoire avec ses stats (format : nom/vie/endurance/attaque/defense/vitesse). Si l'accessoire ne rapporte rien sur une stat spécifique (ex: endurance), mettre 0.
-- **/edit-a** : Modifie les informations d'un accessoire (le nom actuel est obligatoire, les autres champs sont optionnels).
-- **/delete-a** : Supprime les stats d'un accessoire par son nom (attention cette action est irréversible et il n'y aura pas de demande de confirmation avant de supprimer).
+- **/set-a** : Enregistre un nouvel accessoire avec ses stats. (idem armes)
+- **/edit-a** : Modifie les informations d'un accessoire. (idem armes)
+- **/delete-a** : Supprime les stats d'un accessoire par son nom. (idem armes)
+
+**Commandes familiers disponibles :**
+- **/get-f** : Recherche les stats d'un familier par son nom.
+- **/set-f** : Enregistre un nouveau familier avec ses stats. (idem armes)
+- **/edit-f** : Modifie les informations d'un familier. (idem armes)
+- **/delete-f** : Supprime les stats d'un familier par son nom. (idem armes)
 
 Utilise chaque commande pour plus de détails sur son utilisation.
         `;
