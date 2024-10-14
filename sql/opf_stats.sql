@@ -82,6 +82,27 @@ CREATE TABLE `weapons` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+DROP TABLE IF EXISTS `pets`;
+CREATE TABLE `pets` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `nom` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+DROP TABLE IF EXISTS `statistics_pets`;
+CREATE TABLE `statistics_pets` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `pet_id` int DEFAULT NULL,
+  `vie` int DEFAULT NULL,
+  `endurance` int DEFAULT NULL,
+  `attaque` int DEFAULT NULL,
+  `defense` int DEFAULT NULL,
+  `vitesse` int DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `pet_id` (`pet_id`),
+  CONSTRAINT `statistics_pets_ibfk_1` FOREIGN KEY (`pet_id`) REFERENCES `pets` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
 INSERT INTO `accessories` (`id`, `nom`) VALUES
 (1, 'Boucles Zoro'),
 (2, 'Tutu'),
@@ -412,10 +433,13 @@ INSERT INTO `weapons` (`id`, `nom`) VALUES
 (12, 'Tuyau'),
 (13, 'Soul Solid'),
 (14, 'Kabuto'),
-(15, 'Funkfreed'),
+(15, 'Funkfreed'),pets
 (16, 'Raiu'),
 (17, 'Murakumogiri'),
 (18, 'Warabide');
+
+INSERT INTO `pets` (`id`, `nom`) VALUES
+(1, 'Aerofish');
 
 
 

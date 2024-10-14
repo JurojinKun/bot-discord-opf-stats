@@ -1,51 +1,51 @@
 const { ApplicationCommandOptionType } = require("discord.js");
-const { Accessory, StatisticsAccessory } = require("../models");
+const { Pet, StatisticsPet } = require("../models");
 const capitalizeEachWord = require("../utils/utils");
 
 module.exports = {
-  name: "edit-a",
-  description: "Modifie les informations d'un accessoire",
+  name: "edit-f",
+  description: "Modifie les informations d'un familier",
   options: [
     {
       type: ApplicationCommandOptionType.String,
       name: "nom",
-      description: "Le nom actuel de l'accessoire",
+      description: "Le nom actuel du familier",
       required: true,
     },
     {
       type: ApplicationCommandOptionType.String,
       name: "nouveau_nom",
-      description: "Le nouveau nom de l'accessoire",
+      description: "Le nouveau nom du familier",
       required: false,
     },
     {
       type: ApplicationCommandOptionType.Integer,
       name: "vie",
-      description: "La nouvelle valeur de vie de l'accessoire",
+      description: "La nouvelle valeur de vie du familier",
       required: false,
     },
     {
       type: ApplicationCommandOptionType.Integer,
       name: "endurance",
-      description: "La nouvelle valeur d'endurance de l'accessoire",
+      description: "La nouvelle valeur d'endurance du familier",
       required: false,
     },
     {
       type: ApplicationCommandOptionType.Integer,
       name: "attaque",
-      description: "La nouvelle valeur d'attaque de l'accessoire",
+      description: "La nouvelle valeur d'attaque du familier",
       required: false,
     },
     {
       type: ApplicationCommandOptionType.Integer,
       name: "defense",
-      description: "La nouvelle valeur de défense de l'accessoire",
+      description: "La nouvelle valeur de défense du familier",
       required: false,
     },
     {
       type: ApplicationCommandOptionType.Integer,
       name: "vitesse",
-      description: "La nouvelle valeur de vitesse de l'accessoire",
+      description: "La nouvelle valeur de vitesse du familier",
       required: false,
     },
   ],
@@ -60,10 +60,10 @@ module.exports = {
     let capitalizedName = capitalizeEachWord(nom);
 
     try {
-      const accessory = await Accessory.findOne({ where: { nom: nom } });
-      if (!accessory) {
+      const familier = await Pet.findOne({ where: { nom: nom } });
+      if (!familier) {
         return interaction.reply(
-          `Si tu veux éditer un accessoire, commence par avoir un QI plus élévé qu'Azmog. ${capitalizedName} n'est même pas encore sauvegardé.`
+          `Si tu veux éditer un familier, commence par avoir un QI plus élévé qu'Azmog. ${capitalizedName} n'est même pas encore sauvegardé.`
         );
       }
 
@@ -86,24 +86,24 @@ module.exports = {
         defense === null &&
         vitesse === null
       ) {
-        accessory.nom = nouveauNom;
-        await accessory.save();
+        familier.nom = nouveauNom;
+        await familier.save();
         capitalizedName = capitalizeEachWord(nouveauNom);
       } else {
-        // Rechercher les statistiques associées au accessory
-        const statistique = await StatisticsAccessory.findOne({
-          where: { accessory_id: accessory.id },
+        // Rechercher les statistiques associées au familier
+        const statistique = await StatisticsPet.findOne({
+          where: { pet_id: familier.id },
         });
 
-        // Mettre à jour des statistiques pour le accessory
+        // Mettre à jour des statistiques pour le familier
         if (!statistique) {
           return await interaction.reply(
-            `Si tu veux éditer un accessoire, commence par avoir un QI plus élévé qu'Azmog. Les stats de ${capitalizedName} n'existe pas encore donc tu ne peux éditer que son nom.`
+            `Si tu veux éditer un familier, commence par avoir un QI plus élévé qu'Azmog. Les stats de ${capitalizedName} n'existe pas encore donc tu ne peux éditer que son nom.`
           );
         } else {
           if (nouveauNom != null) {
-            accessory.nom = nouveauNom;
-            await accessory.save();
+            familier.nom = nouveauNom;
+            await familier.save();
             capitalizedName = capitalizeEachWord(nouveauNom);
           }
           if (vie !== null) statistique.vie = vie;
@@ -121,8 +121,7 @@ module.exports = {
     } catch (e) {
       console.log(e);
       await interaction.reply({
-        content:
-          "Une erreur est survenue lors de la modification de l'accessoire",
+        content: "Une erreur est survenue lors de la modification du familier",
         ephemeral: true,
       });
     }
