@@ -283,7 +283,8 @@ INSERT INTO `characters` (`id`, `nom`, `unlockable`) VALUES
 (162, 'Nekomamushi', 1),
 (163, 'Pedro', 1),
 (164, 'Pekoms', 0),
-(165, 'Raizo', 0);
+(165, 'Raizo', 0),
+(166, 'Gaimon', 1);
 
 INSERT INTO `statistics_accessories` (`id`, `accessory_id`, `vie`, `endurance`, `attaque`, `defense`, `vitesse`) VALUES
 (1, 1, 3, 10, 2, 0, 5);
