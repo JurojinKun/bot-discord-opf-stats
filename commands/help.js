@@ -4,29 +4,14 @@ module.exports = {
     async execute(interaction) {
         const helpMessage = `
 **Commandes personnages disponibles :**
-- **/get-p** : Recherche les stats d'un personnage par son nom.
-- **/set-p** : Enregistre un nouveau personnage avec ses stats (format : nom/vie/endurance/attaque/defense/vitesse).
-- **/edit-p** : Modifie les informations d'un personnage (le nom actuel est obligatoire, les autres champs sont optionnels).
-- **/delete-p** : Supprime les stats d'un personnage par son nom (attention cette action est irréversible et il n'y aura pas de demande de confirmation avant de supprimer).
+- **/get** : Recherche les stats personnage, familier, accessoire ou arme par son nom.
+- **/set** : Enregistre nouveau personnage, nouveau familier, nouvel accessoire ou nouvelle arme avec ses stats (format : nom/vie/endurance/attaque/defense/vitesse).
+- **/edit** : Modifie les informations personnage, familier, accessoire ou arme (le nom actuel est obligatoire, les autres champs sont optionnels).
+- **/delete** : Supprime les stats personnage, familier, accessoire ou arme par son nom (attention cette action est irréversible et il n'y aura pas de demande de confirmation avant de supprimer).
 - **/no-stats** : Liste les personnages étant sur le jeu mais qui n'ont pas encore leurs stats sauvegardées.
+- **/rank** : Classe les personnages existants par leurs statistiques de manière décroissante en top 3, 10 ou 25.
 
-**Commandes armes disponibles :**
-- **/get-w** : Recherche les stats d'une arme par son nom.
-- **/set-w** : Enregistre une nouvelle arme avec ses stats (format : nom/vie/endurance/attaque/defense/vitesse). Si l'arme ne rapporte rien sur une stat spécifique (ex: endurance), mettre 0.
-- **/edit-w** : Modifie les informations d'une arme (le nom actuel est obligatoire, les autres champs sont optionnels).
-- **/delete-w** : Supprime les stats d'une arme par son nom (attention cette action est irréversible et il n'y aura pas de demande de confirmation avant de supprimer).
-
-**Commandes accessoires disponibles :**
-- **/get-a** : Recherche les stats d'un accessoire par son nom.
-- **/set-a** : Enregistre un nouvel accessoire avec ses stats. (idem armes)
-- **/edit-a** : Modifie les informations d'un accessoire. (idem armes)
-- **/delete-a** : Supprime les stats d'un accessoire par son nom. (idem armes)
-
-**Commandes familiers disponibles :**
-- **/get-f** : Recherche les stats d'un familier par son nom.
-- **/set-f** : Enregistre un nouveau familier avec ses stats. (idem armes)
-- **/edit-f** : Modifie les informations d'un familier. (idem armes)
-- **/delete-f** : Supprime les stats d'un familier par son nom. (idem armes)
+Précision importante pour les commandes /get, /set, /edit et /delete: veuillez spécifier un type valide : "p" pour personnage, "f" pour familier, "ac" pour un accessoire et "ar" pour une arme par exemple.
 
 Utilise chaque commande pour plus de détails sur son utilisation.
         `;
