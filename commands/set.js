@@ -20,7 +20,7 @@ module.exports = {
     {
       type: ApplicationCommandOptionType.String,
       name: "type",
-      description: "Type à rechercher",
+      description: "Type à créer",
       required: true,
     },
     {
@@ -189,7 +189,7 @@ module.exports = {
     } catch (e) {
       console.log(e);
       await interaction.reply({
-        content: "Une erreur est survenue lors de la recherche.",
+        content: "Une erreur est survenue lors de la création.",
         ephemeral: true,
       });
     }
