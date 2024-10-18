@@ -11,7 +11,7 @@ module.exports = {
 - **/no-stats** : Liste les personnages étant sur le jeu mais qui n'ont pas encore leurs stats sauvegardées.
 - **/rank** : Classe les personnages existants par leurs statistiques de manière décroissante en top 3, 10 ou 25.
 
-Précision importante pour les commandes /get, /set, /edit et /delete: veuillez spécifier un type valide : "p" pour personnage, "f" pour familier, "ac" pour un accessoire et "ar" pour une arme par exemple.
+**Précision importante pour les commandes /get, /set, /edit et /delete: veuillez spécifier un type valide : "p" pour personnage, "f" pour familier, "ac" pour un accessoire et "ar" pour une arme par exemple.**
 
 Utilise chaque commande pour plus de détails sur son utilisation.
         `;
