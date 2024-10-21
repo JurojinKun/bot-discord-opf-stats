@@ -20,8 +20,14 @@ module.exports = {
     {
       type: ApplicationCommandOptionType.String,
       name: "type",
-      description: "Type à créer",
+      description: "Type à créer (personnage, familier, arme ou accessoire)",
       required: true,
+      choices: [
+        { name: "Personnage", value: "personnage" },
+        { name: "Familier", value: "familier" },
+        { name: "Arme", value: "arme" },
+        { name: "Accessoire", value: "accessoire" },
+      ],
     },
     {
       type: ApplicationCommandOptionType.String,
@@ -48,8 +54,6 @@ module.exports = {
 
     try {
       switch (type) {
-        case "p":
-        case "perso":
         case "personnage":
           // Vérifier si le personnage existe déjà
           let personnage = await Character.findOne({ where: { nom: nom } });
@@ -80,8 +84,6 @@ module.exports = {
             vitesse: parseInt(vitesse),
           });
           break;
-        case "f":
-        case "fafa":
         case "familier":
           // Vérifier si le familier existe déjà
           let familier = await Pet.findOne({ where: { nom: nom } });
@@ -112,9 +114,6 @@ module.exports = {
             vitesse: parseInt(vitesse),
           });
           break;
-        case "ar":
-        case "w":
-        case "weapon":
         case "arme":
           // Vérifier si l'arme' existe déjà
           let weapon = await Weapon.findOne({ where: { nom: nom } });
@@ -145,9 +144,7 @@ module.exports = {
             vitesse: parseInt(vitesse),
           });
           break;
-        case "ac":
-        case "accessory":
-        case "accesoire":
+        case "accessoire":
           // Vérifier si l'accessoire existe déjà
           let accessory = await Accessory.findOne({ where: { nom: nom } });
           if (!accessory) {
@@ -179,7 +176,7 @@ module.exports = {
         default:
           return await interaction.reply({
             content:
-              'Veuillez spécifier un type valide : "p" pour personnage, "f" pour familier, "ac" pour un accessoire et "ar" pour une arme par exemple.',
+              'Spécifie un type valide.',
             ephemeral: true,
           });
       }

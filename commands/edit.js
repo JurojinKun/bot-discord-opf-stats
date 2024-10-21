@@ -20,8 +20,14 @@ module.exports = {
     {
       type: ApplicationCommandOptionType.String,
       name: "type",
-      description: "Type à supprimer",
+      description: "Type à supprimer (personnage, familier, arme ou accessoire)",
       required: true,
+      choices: [
+        { name: "Personnage", value: "personnage" },
+        { name: "Familier", value: "familier" },
+        { name: "Arme", value: "arme" },
+        { name: "Accessoire", value: "accessoire" },
+      ],
     },
     {
       type: ApplicationCommandOptionType.String,
@@ -79,8 +85,6 @@ module.exports = {
 
     try {
       switch (type) {
-        case "p":
-        case "perso":
         case "personnage":
           const personnage = await Character.findOne({ where: { nom: nom } });
           if (!personnage) {
@@ -120,8 +124,6 @@ module.exports = {
             await statistique.save();
           }
           break;
-        case "f":
-        case "fafa":
         case "familier":
           const familier = await Pet.findOne({ where: { nom: nom } });
           if (!familier) {
@@ -182,9 +184,6 @@ module.exports = {
             `Les informations de ${capitalizedName} ont été mises à jour avec succès !`
           );
           break;
-        case "ar":
-        case "w":
-        case "weapon":
         case "arme":
           const weapon = await Weapon.findOne({ where: { nom: nom } });
           if (!weapon) {
@@ -241,9 +240,7 @@ module.exports = {
             }
           }
           break;
-        case "ac":
-        case "accessory":
-        case "accesoire":
+        case "accessoire":
           const accessory = await Accessory.findOne({ where: { nom: nom } });
           if (!accessory) {
             return interaction.reply(
@@ -302,7 +299,7 @@ module.exports = {
         default:
           return await interaction.reply({
             content:
-              'Veuillez spécifier un type valide : "p" pour personnage, "f" pour familier, "ac" pour un accessoire et "ar" pour une arme par exemple.',
+              'Spécifie un type valide.',
             ephemeral: true,
           });
       }
