@@ -3,7 +3,7 @@ module.exports = {
     description: 'Affiche la liste des commandes disponibles',
     async execute(interaction) {
         const helpMessage = `
-**Commandes personnages disponibles :**
+**Commandes disponibles :**
 - **/get** : Recherche les stats personnage, familier, accessoire ou arme par son nom.
 - **/set** : Enregistre nouveau personnage, nouveau familier, nouvel accessoire ou nouvelle arme avec ses stats (format : nom/vie/endurance/attaque/defense/vitesse).
 - **/edit** : Modifie les informations personnage, familier, accessoire ou arme (le nom actuel est obligatoire, les autres champs sont optionnels).
