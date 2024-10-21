@@ -123,7 +123,7 @@ module.exports = {
 
       topClassement.forEach((p, index) => {
         const name = `\n#${index + 1} ${p.nom}`;
-        const value = `**\nVie: **${p.stats.vie}** Endurance: **${p.stats.endurance}** Attaque: **${p.stats.attaque}** Défense: **${p.stats.defense}** Vitesse: **${p.stats.vitesse}**`;
+        const value = `Vie: **${p.stats.vie}** Endurance: **${p.stats.endurance}** Attaque: **${p.stats.attaque}** Défense: **${p.stats.defense}** Vitesse: **${p.stats.vitesse}**`;
         embed.addFields({ name, value, inline: false });
       });
 
