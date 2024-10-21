@@ -62,7 +62,7 @@ module.exports = {
           } else {
             nom = capitalizeEachWord(nom);
             return await interaction.reply(
-              `Je n'ai pas la science infuse, ${nom} n'a pas encore ses stats sauvegardées !`
+              `Je n'ai pas la science infuse, **${nom}** n'a pas encore ses stats sauvegardées !`
             );
           }
           break;
@@ -82,7 +82,7 @@ module.exports = {
           } else {
             nom = capitalizeEachWord(nom);
             return await interaction.reply(
-              `Je n'ai pas la science infuse, ${nom} n'a pas encore ses stats sauvegardées !`
+              `Je n'ai pas la science infuse, **${nom}** n'a pas encore ses stats sauvegardées !`
             );
           }
           break;
@@ -102,7 +102,7 @@ module.exports = {
           } else {
             nom = capitalizeEachWord(nom);
             return await interaction.reply(
-              `Je n'ai pas la science infuse, ${nom} n'a pas encore ses stats sauvegardées !`
+              `Je n'ai pas la science infuse, **${nom}** n'a pas encore ses stats sauvegardées !`
             );
           }
           break;
@@ -124,7 +124,7 @@ module.exports = {
           } else {
             nom = capitalizeEachWord(nom);
             return await interaction.reply(
-              `Je n'ai pas la science infuse, ${nom} n'a pas encore ses stats sauvegardées !`
+              `Je n'ai pas la science infuse, **${nom}** n'a pas encore ses stats sauvegardées !`
             );
           }
           break;
@@ -138,11 +138,11 @@ module.exports = {
 
       // Réponse avec les statistiques
       await interaction.reply(
-        `Type: ${findType(type)}\nNom: ${entityName}\nVie: ${
+        `Type: **${findType(type)}**\nNom: **${entityName}**\nVie: **${
           stats.vie
-        }\nEndurance: ${stats.endurance}\nAttaque: ${stats.attaque}\nDéfense: ${
+        }**\nEndurance: **${stats.endurance}**\nAttaque: **${stats.attaque}**\nDéfense: **${
           stats.defense
-        }\nVitesse: ${stats.vitesse}`
+        }**\nVitesse: **${stats.vitesse}**`
       );
     } catch (e) {
       console.log(e);

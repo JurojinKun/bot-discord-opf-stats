@@ -12,7 +12,7 @@ module.exports = {
 - **/rank-global** : Classe les personnages existants par leurs statistiques globales de manière décroissante en top 3, 10 ou 25.
 - **/rank-build** : Classe les personnages existants par leurs statistiques et le build sélectionné de manière décroissante en top 3, 10 ou 25.
 
-Utilise chaque commande pour plus de détails sur son utilisation.
+**Utilise chaque commande pour plus de détails sur son utilisation.**
         `;
 
         await interaction.reply({ content: helpMessage, ephemeral: true });

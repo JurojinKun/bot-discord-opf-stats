@@ -60,7 +60,7 @@ module.exports = {
           if (!personnage) {
             // Si le personnage n'existe pas
             return await interaction.reply(
-              `${nom} n'existe même pas dans le jeu pour le moment mais bien essayé toxic boy !`
+              `**${nom}** n'existe même pas dans le jeu pour le moment mais bien essayé toxic boy !`
             );
           }
 
@@ -70,7 +70,7 @@ module.exports = {
           });
           if (statsExistantes) {
             return await interaction.reply(
-              `${nom} existe déjà dans la base de données. Tu dors au fond de la classe à côté du radiateur ?`
+              `**${nom}** existe déjà dans la base de données. Tu dors au fond de la classe à côté du radiateur ?`
             );
           }
 
@@ -99,7 +99,7 @@ module.exports = {
             });
             if (statsExistantes) {
               return await interaction.reply(
-                `${nom} existe déjà dans la base de données. Tu dors au fond de la classe à côté du radiateur ?`
+                `**${nom}** existe déjà dans la base de données. Tu dors au fond de la classe à côté du radiateur ?`
               );
             }
           }
@@ -129,7 +129,7 @@ module.exports = {
             });
             if (statsExistantes) {
               return await interaction.reply(
-                `${nom} existe déjà dans la base de données. Tu dors au fond de la classe à côté du radiateur ?`
+                `**${nom}** existe déjà dans la base de données. Tu dors au fond de la classe à côté du radiateur ?`
               );
             }
           }
@@ -158,7 +158,7 @@ module.exports = {
             });
             if (statsExistantes) {
               return await interaction.reply(
-                `${nom} existe déjà dans la base de données. Tu dors au fond de la classe à côté du radiateur ?`
+                `**${nom}** existe déjà dans la base de données. Tu dors au fond de la classe à côté du radiateur ?`
               );
             }
           }
@@ -181,7 +181,7 @@ module.exports = {
           });
       }
       await interaction.reply(
-        `Type: ${findType(type)}\n${nom} sauvegardé(e) avec succès !`
+        `Type: **${findType(type)}**\n**${nom}** sauvegardé(e) avec succès !`
       );
     } catch (e) {
       console.log(e);

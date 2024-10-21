@@ -69,7 +69,7 @@ module.exports = {
 
       if (classement.length < topNumber) {
         return interaction.reply(
-          `Il n'y a pas assez de personnages avec des statistiques pour afficher un top ${topNumber}. Actuellement, il n'y en a que ${classement.length}.\nBouge toi les fesses feignasse !`
+          `Il n'y a pas assez de personnages avec des statistiques pour afficher un top ${topNumber}.\nActuellement, il n'y en a que ${classement.length}.\nBouge toi les fesses feignasse !`
         );
       }
 
