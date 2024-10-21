@@ -101,7 +101,7 @@ module.exports = {
         default:
           return await interaction.reply({
             content:
-              'Veuillez spécifier un type valide : "p" pour personnage, "f" pour familier, "ac" pour un accessoire et "ar" pour une arme par exemple.',
+              'Spécifie un type valide.',
             ephemeral: true,
           });
       }
