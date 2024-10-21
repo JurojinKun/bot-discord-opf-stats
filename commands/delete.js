@@ -20,8 +20,14 @@ module.exports = {
     {
       type: ApplicationCommandOptionType.String,
       name: "type",
-      description: "Type à supprimer",
+      description: "Type à supprimer (personnage, familier, arme ou accessoire)",
       required: true,
+      choices: [
+        { name: "Personnage", value: "personnage" },
+        { name: "Familier", value: "familier" },
+        { name: "Arme", value: "arme" },
+        { name: "Accessoire", value: "accessoire" },
+      ],
     },
     {
         type: ApplicationCommandOptionType.String,
@@ -36,8 +42,6 @@ module.exports = {
 
     try {
       switch (type) {
-        case "p":
-        case "perso":
         case "personnage":
             const personnage = await Character.findOne({ where: { nom: nom } });
             if (!personnage) {
@@ -52,8 +56,6 @@ module.exports = {
             // Supprimer les statistiques associées à ce personnage
             await StatisticsCharacter.destroy({ where: { character_id: personnage.id } });
           break;
-        case "f":
-        case "fafa":
         case "familier":
             const familier = await Pet.findOne({ where: { nom: nom } });
             if (!familier) {
@@ -68,9 +70,6 @@ module.exports = {
             // Supprimer les statistiques associées à ce familier
             await StatisticsPet.destroy({ where: { pet_id: familier.id } });
           break;
-        case "ar":
-        case "w":
-        case "weapon":
         case "arme":
             const weapon = await Weapon.findOne({ where: { nom: nom } });
             if (!weapon) {
@@ -85,9 +84,7 @@ module.exports = {
             // Supprimer les statistiques associées à cette arme
             await StatisticsWeapon.destroy({ where: { weapon_id: weapon.id } });
           break;
-        case "ac":
-        case "accessory":
-        case "accesoire":
+        case "accessoire":
             const accessory = await Accessory.findOne({ where: { nom: nom } });
             if (!accessory) {
                 return await interaction.reply(`Je ne peux pas supprimer les stats d'un accessoire qui n'existe pas. ${nom} n'est pas dans ma base de données.`);

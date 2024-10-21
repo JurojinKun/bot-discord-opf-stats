@@ -20,22 +20,13 @@ function capitalizeEachWord(str) {
 
 function findType(type) {
     switch (type) {
-      case "p":
-      case "perso":
       case "personnage":
         return "Personnage";
-      case "f":
-      case "fafa":
       case "familier":
         return "Familier";
-      case "ar":
-      case "w":
-      case "weapon":
       case "arme":
         return "Arme";
-      case "ac":
-      case "accessory":
-      case "accesoire":
+      case "accessoire":
         return "Accessoire";
       default:
         return "Type inconnu";

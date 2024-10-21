@@ -20,8 +20,14 @@ module.exports = {
     {
       type: ApplicationCommandOptionType.String,
       name: "type",
-      description: "Type à rechercher",
+      description: "Type à rechercher (personnage, familier, arme ou accessoire)",
       required: true,
+      choices: [
+        { name: "Personnage", value: "personnage" },
+        { name: "Familier", value: "familier" },
+        { name: "Arme", value: "arme" },
+        { name: "Accessoire", value: "accessoire" },
+      ],
     },
     {
       type: ApplicationCommandOptionType.String,
@@ -38,8 +44,6 @@ module.exports = {
       let stats, entityName;
 
       switch (type) {
-        case "p":
-        case "perso":
         case "personnage":
           const personnage = await Character.findOne({
             where: { nom: nom },
@@ -62,8 +66,6 @@ module.exports = {
             );
           }
           break;
-        case "f":
-        case "fafa":
         case "familier":
           const familier = await Pet.findOne({
             where: { nom: nom },
@@ -84,9 +86,6 @@ module.exports = {
             );
           }
           break;
-        case "ar":
-        case "w":
-        case "weapon":
         case "arme":
           const weapon = await Weapon.findOne({
             where: { nom: nom },
@@ -107,9 +106,7 @@ module.exports = {
             );
           }
           break;
-        case "ac":
-        case "accessory":
-        case "accesoire":
+        case "accessoire":
           const accessory = await Accessory.findOne({
             where: { nom: nom },
             include: [

@@ -4,8 +4,8 @@ const { EmbedBuilder } = require("discord.js");
 const { Op } = require("sequelize");
 
 module.exports = {
-  name: "rank",
-  description: "Classe les personnages selon les stats",
+  name: "rank-global",
+  description: "Classe les personnages selon leurs stats globales",
   options: [
     {
       type: ApplicationCommandOptionType.Integer,
@@ -67,6 +67,12 @@ module.exports = {
           return b.totalStats - a.totalStats;
         });
 
+      if (classement.length < topNumber) {
+        return interaction.reply(
+          `Il n'y a pas assez de personnages avec des statistiques pour afficher un top ${topNumber}. Actuellement, il n'y en a que ${classement.length}.\nBouge toi les fesses feignasse !`
+        );
+      }
+
       // Limiter au nombre choisi par l'utilisateur
       const topClassement = classement.slice(0, topNumber);
 
@@ -76,8 +82,8 @@ module.exports = {
         .setColor("#fec800");
 
       topClassement.forEach((p, index) => {
-        const name = `#${index + 1} ${p.nom}`;
-        const value = `Total stats: ${p.totalStats}\nVie: ${p.stats.vie} Endurance: ${p.stats.endurance} Attaque: ${p.stats.attaque} Défense: ${p.stats.defense} Vitesse: ${p.stats.vitesse} `;
+        const name = `\n#${index + 1} ${p.nom}`;
+        const value = `\nVie: **${p.stats.vie}** Endurance: **${p.stats.endurance}** Attaque: **${p.stats.attaque}** Défense: **${p.stats.defense}** Vitesse: **${p.stats.vitesse}**`;
         embed.addFields({ name, value, inline: false });
       });
 
