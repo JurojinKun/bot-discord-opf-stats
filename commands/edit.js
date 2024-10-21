@@ -89,7 +89,7 @@ module.exports = {
           const personnage = await Character.findOne({ where: { nom: nom } });
           if (!personnage) {
             return interaction.reply(
-              `Si tu veux éditer un personnage, commence par avoir un QI plus élévé qu'Azmog. ${capitalizedName} n'est même pas encore sur le jeu.`
+              `Si tu veux éditer un personnage, commence par avoir un QI plus élévé qu'Azmog. **${capitalizedName}** n'est même pas encore sur le jeu.*`
             );
           }
 
@@ -113,7 +113,7 @@ module.exports = {
           // Mettre à jour des statistiques pour le personnage
           if (!statistique) {
             return await interaction.reply(
-              `Si tu veux éditer un personnage, commence par avoir un QI plus élévé qu'Azmog. Les stats de ${capitalizedName} n'existe pas encore donc tu ne peux pas l'éditer.`
+              `Si tu veux éditer un personnage, commence par avoir un QI plus élévé qu'Azmog. Les stats de **${capitalizedName}** n'existe pas encore donc tu ne peux pas l'éditer.`
             );
           } else {
             if (vie !== null) statistique.vie = vie;
@@ -128,7 +128,7 @@ module.exports = {
           const familier = await Pet.findOne({ where: { nom: nom } });
           if (!familier) {
             return interaction.reply(
-              `Si tu veux éditer un familier, commence par avoir un QI plus élévé qu'Azmog. ${capitalizedName} n'est même pas encore sauvegardé.`
+              `Si tu veux éditer un familier, commence par avoir un QI plus élévé qu'Azmog. **${capitalizedName}** n'est même pas encore sauvegardé.`
             );
           }
 
@@ -163,7 +163,7 @@ module.exports = {
             // Mettre à jour des statistiques pour le familier
             if (!statistique) {
               return await interaction.reply(
-                `Si tu veux éditer un familier, commence par avoir un QI plus élévé qu'Azmog. Les stats de ${capitalizedName} n'existe pas encore donc tu ne peux éditer que son nom.`
+                `Si tu veux éditer un familier, commence par avoir un QI plus élévé qu'Azmog. Les stats de **${capitalizedName}** n'existe pas encore donc tu ne peux éditer que son nom.`
               );
             } else {
               if (nouveauNom != null) {
@@ -181,14 +181,14 @@ module.exports = {
           }
 
           await interaction.reply(
-            `Les informations de ${capitalizedName} ont été mises à jour avec succès !`
+            `Les informations de **${capitalizedName}** ont été mises à jour avec succès !`
           );
           break;
         case "arme":
           const weapon = await Weapon.findOne({ where: { nom: nom } });
           if (!weapon) {
             return interaction.reply(
-              `Si tu veux éditer une arme, commence par avoir un QI plus élévé qu'Azmog. ${capitalizedName} n'est même pas encore sauvegardé.`
+              `Si tu veux éditer une arme, commence par avoir un QI plus élévé qu'Azmog. **${capitalizedName}** n'est même pas encore sauvegardé.`
             );
           }
 
@@ -223,7 +223,7 @@ module.exports = {
             // Mettre à jour des statistiques pour l'arme
             if (!statistique) {
               return await interaction.reply(
-                `Si tu veux éditer une arme, commence par avoir un QI plus élévé qu'Azmog. Les stats de ${capitalizedName} n'existe pas encore donc tu ne peux éditer que son nom.`
+                `Si tu veux éditer une arme, commence par avoir un QI plus élévé qu'Azmog. Les stats de **${capitalizedName}** n'existe pas encore donc tu ne peux éditer que son nom.`
               );
             } else {
               if (nouveauNom != null) {
@@ -244,7 +244,7 @@ module.exports = {
           const accessory = await Accessory.findOne({ where: { nom: nom } });
           if (!accessory) {
             return interaction.reply(
-              `Si tu veux éditer un accessoire, commence par avoir un QI plus élévé qu'Azmog. ${capitalizedName} n'est même pas encore sauvegardé.`
+              `Si tu veux éditer un accessoire, commence par avoir un QI plus élévé qu'Azmog. **${capitalizedName}** n'est même pas encore sauvegardé.`
             );
           }
 
@@ -279,7 +279,7 @@ module.exports = {
             // Mettre à jour des statistiques pour le accessory
             if (!statistique) {
               return await interaction.reply(
-                `Si tu veux éditer un accessoire, commence par avoir un QI plus élévé qu'Azmog. Les stats de ${capitalizedName} n'existe pas encore donc tu ne peux éditer que son nom.`
+                `Si tu veux éditer un accessoire, commence par avoir un QI plus élévé qu'Azmog. Les stats de **${capitalizedName}** n'existe pas encore donc tu ne peux éditer que son nom.`
               );
             } else {
               if (nouveauNom != null) {
@@ -306,7 +306,7 @@ module.exports = {
       await interaction.reply(
         `Type: ${findType(
           type
-        )}\nLes informations de ${capitalizedName} ont été mises à jour avec succès !`
+        )}\nLes informations de **${capitalizedName}** ont été mises à jour avec succès !`
       );
     } catch (e) {
       console.log(e);

@@ -45,12 +45,12 @@ module.exports = {
         case "personnage":
             const personnage = await Character.findOne({ where: { nom: nom } });
             if (!personnage) {
-                return await interaction.reply(`Je ne peux pas supprimer les stats d'un personnage qui n'existe pas. ${nom} n'est pas dans ma base de données.`);
+                return await interaction.reply(`Je ne peux pas supprimer les stats d'un personnage qui n'existe pas. **${nom}** n'est pas dans ma base de données.`);
             }
 
             const statistiquePerso = await StatisticsCharacter.findOne({ where: { character_id: personnage.id } });
             if (!statistiquePerso) {
-                return await interaction.reply(`Je ne peux pas supprimer les stats d'un personnage qui n'a pas ses stats encore sauvegardées. ${nom} n'est pas dans ma base de données.`);
+                return await interaction.reply(`Je ne peux pas supprimer les stats d'un personnage qui n'a pas ses stats encore sauvegardées. **${nom}** n'est pas dans ma base de données.`);
             }
 
             // Supprimer les statistiques associées à ce personnage
@@ -59,12 +59,12 @@ module.exports = {
         case "familier":
             const familier = await Pet.findOne({ where: { nom: nom } });
             if (!familier) {
-                return await interaction.reply(`Je ne peux pas supprimer les stats d'un familier qui n'existe pas. ${nom} n'est pas dans ma base de données.`);
+                return await interaction.reply(`Je ne peux pas supprimer les stats d'un familier qui n'existe pas. **${nom}** n'est pas dans ma base de données.`);
             }
 
             const statistiqueFafa = await StatisticsPet.findOne({ where: { pet_id: familier.id } });
             if (!statistiqueFafa) {
-                return await interaction.reply(`Je ne peux pas supprimer les stats d'un familier qui n'a pas ses stats encore sauvegardées. ${nom} n'est pas dans ma base de données.`);
+                return await interaction.reply(`Je ne peux pas supprimer les stats d'un familier qui n'a pas ses stats encore sauvegardées. **${nom}** n'est pas dans ma base de données.`);
             }
 
             // Supprimer les statistiques associées à ce familier
@@ -73,12 +73,12 @@ module.exports = {
         case "arme":
             const weapon = await Weapon.findOne({ where: { nom: nom } });
             if (!weapon) {
-                return await interaction.reply(`Je ne peux pas supprimer les stats d'une arme qui n'existe pas. ${nom} n'est pas dans ma base de données.`);
+                return await interaction.reply(`Je ne peux pas supprimer les stats d'une arme qui n'existe pas. **${nom}** n'est pas dans ma base de données.`);
             }
 
             const statistiqueWeapon = await StatisticsWeapon.findOne({ where: { weapon_id: weapon.id } });
             if (!statistiqueWeapon) {
-                return await interaction.reply(`Je ne peux pas supprimer les stats d'une arme qui n'a pas ses stats encore sauvegardées. ${nom} n'est pas dans ma base de données.`);
+                return await interaction.reply(`Je ne peux pas supprimer les stats d'une arme qui n'a pas ses stats encore sauvegardées. **${nom}** n'est pas dans ma base de données.`);
             }
 
             // Supprimer les statistiques associées à cette arme
@@ -87,12 +87,12 @@ module.exports = {
         case "accessoire":
             const accessory = await Accessory.findOne({ where: { nom: nom } });
             if (!accessory) {
-                return await interaction.reply(`Je ne peux pas supprimer les stats d'un accessoire qui n'existe pas. ${nom} n'est pas dans ma base de données.`);
+                return await interaction.reply(`Je ne peux pas supprimer les stats d'un accessoire qui n'existe pas. **${nom}** n'est pas dans ma base de données.`);
             }
 
             const statistiqueAccessory = await StatisticsAccessory.findOne({ where: { accessory_id: accessory.id } });
             if (!statistiqueAccessory) {
-                return await interaction.reply(`Je ne peux pas supprimer les stats d'un accessoire qui n'a pas ses stats encore sauvegardées. ${nom} n'est pas dans ma base de données.`);
+                return await interaction.reply(`Je ne peux pas supprimer les stats d'un accessoire qui n'a pas ses stats encore sauvegardées. **${nom}** n'est pas dans ma base de données.`);
             }
 
             // Supprimer les statistiques associées à cet accessoire
@@ -105,7 +105,7 @@ module.exports = {
             ephemeral: true,
           });
       }
-    await interaction.reply(`Type: ${findType(type)}\nLes stats de ${nom} ont été supprimées avec succès.`);
+    await interaction.reply(`Type: **${findType(type)}**\nLes stats de **${nom}** ont été supprimées avec succès.`);
     } catch (e) {
       console.log(e);
       await interaction.reply({

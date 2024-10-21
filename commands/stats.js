@@ -95,7 +95,7 @@ module.exports = {
             const nomsPets = pets.map((p) => p.nom).join("\n");
             reponse += `**Familiers sauvegardés:**\n${nomsPets}`;
           } else {
-            reponse += `**Pas encore de familiers sauvegardés, bouge toi les fesses !**`;
+            reponse += `Pas encore de familiers sauvegardés, bouge toi les fesses !`;
           }
           break;
         case "arme":
@@ -113,7 +113,7 @@ module.exports = {
             const nomsWeapons = weapons.map((p) => p.nom).join("\n");
             reponse += `**Armes sauvegardées:**\n${nomsWeapons}`;
           } else {
-            reponse += `**Pas encore d'armes sauvegardées, bouge toi les fesses !**`;
+            reponse += `Pas encore d'armes sauvegardées, bouge toi les fesses !`;
           }
           break;
         case "accessoire":
@@ -131,7 +131,7 @@ module.exports = {
             const nomsAccessories = accessories.map((p) => p.nom).join("\n");
             reponse += `**Accessoires sauvegardés:**\n${nomsAccessories}`;
           } else {
-            reponse += `**Pas encore d'accessoires sauvegardés, bouge toi les fesses !**`;
+            reponse += `Pas encore d'accessoires sauvegardés, bouge toi les fesses !`;
           }
           break;
         default:
