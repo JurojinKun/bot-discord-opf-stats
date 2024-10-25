@@ -169,7 +169,7 @@ module.exports = {
               switch (buildType) {
                 case "offensif":
                   totalStats =
-                    stats.attaque * 2.5 +
+                    stats.attaque * 3.0 +
                     stats.vitesse * 2 +
                     stats.vie +
                     stats.endurance +
@@ -177,7 +177,7 @@ module.exports = {
                   break;
                 case "défensif":
                   totalStats =
-                    stats.defense * 2.5 +
+                    stats.defense * 3.0 +
                     stats.vitesse * 2 +
                     stats.vie +
                     stats.endurance +
@@ -185,8 +185,8 @@ module.exports = {
                   break;
                 case "équilibré":
                   totalStats =
-                    stats.attaque * 2.5 +
-                    stats.defense * 2.5 +
+                    stats.attaque * 3.0 +
+                    stats.defense * 3.0 +
                     stats.vitesse * 2 +
                     stats.vie +
                     stats.endurance;
@@ -244,7 +244,7 @@ module.exports = {
               switch (buildType) {
                 case "offensif":
                   totalStats =
-                    stats.attaque * 2.5 +
+                    stats.attaque * 3.0 +
                     stats.vitesse * 2 +
                     stats.vie +
                     stats.endurance +
@@ -252,7 +252,7 @@ module.exports = {
                   break;
                 case "défensif":
                   totalStats =
-                    stats.defense * 2.5 +
+                    stats.defense * 3.0 +
                     stats.vitesse * 2 +
                     stats.vie +
                     stats.endurance +
@@ -260,8 +260,8 @@ module.exports = {
                   break;
                 case "équilibré":
                   totalStats =
-                    stats.attaque * 2.5 +
-                    stats.defense * 2.5 +
+                    stats.attaque * 3.0 +
+                    stats.defense * 3.0 +
                     stats.vitesse * 2 +
                     stats.vie +
                     stats.endurance;
@@ -319,7 +319,7 @@ module.exports = {
               switch (buildType) {
                 case "offensif":
                   totalStats =
-                    stats.attaque * 2.5 +
+                    stats.attaque * 3.0 +
                     stats.vitesse * 2 +
                     stats.vie +
                     stats.endurance +
@@ -327,7 +327,7 @@ module.exports = {
                   break;
                 case "défensif":
                   totalStats =
-                    stats.defense * 2.5 +
+                    stats.defense * 3.0 +
                     stats.vitesse * 2 +
                     stats.vie +
                     stats.endurance +
@@ -335,8 +335,8 @@ module.exports = {
                   break;
                 case "équilibré":
                   totalStats =
-                    stats.attaque * 2.5 +
-                    stats.defense * 2.5 +
+                    stats.attaque * 3.0 +
+                    stats.defense * 3.0 +
                     stats.vitesse * 2 +
                     stats.vie +
                     stats.endurance;
@@ -378,7 +378,7 @@ module.exports = {
       topClassement = classement.slice(0, topNumber);
 
       // Créer un embed pour le classement
-      embed = new EmbedBuilder().setTitle(titleEmbed).setColor("#fec800");
+      embed = new EmbedBuilder().setTitle(titleEmbed).setColor("#1fc097");
 
       topClassement.forEach((p, index) => {
         const name = `\n#${index + 1} ${p.nom}`;

@@ -266,7 +266,7 @@ module.exports = {
       topClassement = classement.slice(0, topNumber);
 
       // Créer un embed pour le classement
-      embed = new EmbedBuilder().setTitle(titleEmbed).setColor("#fec800");
+      embed = new EmbedBuilder().setTitle(titleEmbed).setColor("#1fc097");
 
       topClassement.forEach((p, index) => {
         const name = `\n#${index + 1} ${p.nom}`;

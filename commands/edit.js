@@ -20,7 +20,8 @@ module.exports = {
     {
       type: ApplicationCommandOptionType.String,
       name: "type",
-      description: "Type à supprimer (personnage, familier, arme ou accessoire)",
+      description:
+        "Type à supprimer (personnage, familier, arme ou accessoire)",
       required: true,
       choices: [
         { name: "Personnage", value: "personnage" },
@@ -151,9 +152,9 @@ module.exports = {
             defense === null &&
             vitesse === null
           ) {
-            familier.nom = nouveauNom;
-            await familier.save();
             capitalizedName = capitalizeEachWord(nouveauNom);
+            familier.nom = capitalizedName;
+            await familier.save();
           } else {
             // Rechercher les statistiques associées au familier
             const statistique = await StatisticsPet.findOne({
@@ -167,9 +168,9 @@ module.exports = {
               );
             } else {
               if (nouveauNom != null) {
-                familier.nom = nouveauNom;
-                await familier.save();
                 capitalizedName = capitalizeEachWord(nouveauNom);
+                familier.nom = capitalizedName;
+                await familier.save();
               }
               if (vie !== null) statistique.vie = vie;
               if (endurance !== null) statistique.endurance = endurance;
@@ -211,9 +212,9 @@ module.exports = {
             defense === null &&
             vitesse === null
           ) {
-            weapon.nom = nouveauNom;
-            await weapon.save();
             capitalizedName = capitalizeEachWord(nouveauNom);
+            weapon.nom = capitalizedName;
+            await weapon.save();
           } else {
             // Rechercher les statistiques associées à l'arme
             const statistique = await StatisticsWeapon.findOne({
@@ -227,9 +228,9 @@ module.exports = {
               );
             } else {
               if (nouveauNom != null) {
-                weapon.nom = nouveauNom;
-                await weapon.save();
                 capitalizedName = capitalizeEachWord(nouveauNom);
+                weapon.nom = capitalizedName;
+                await weapon.save();
               }
               if (vie !== null) statistique.vie = vie;
               if (endurance !== null) statistique.endurance = endurance;
@@ -267,9 +268,9 @@ module.exports = {
             defense === null &&
             vitesse === null
           ) {
-            accessory.nom = nouveauNom;
-            await accessory.save();
             capitalizedName = capitalizeEachWord(nouveauNom);
+            accessory.nom = capitalizedName;
+            await accessory.save();
           } else {
             // Rechercher les statistiques associées au accessory
             const statistique = await StatisticsAccessory.findOne({
@@ -283,9 +284,9 @@ module.exports = {
               );
             } else {
               if (nouveauNom != null) {
-                accessory.nom = nouveauNom;
-                await accessory.save();
                 capitalizedName = capitalizeEachWord(nouveauNom);
+                accessory.nom = capitalizedName;
+                await accessory.save();
               }
               if (vie !== null) statistique.vie = vie;
               if (endurance !== null) statistique.endurance = endurance;
@@ -298,8 +299,7 @@ module.exports = {
           break;
         default:
           return await interaction.reply({
-            content:
-              'Spécifie un type valide.',
+            content: "Spécifie un type valide.",
             ephemeral: true,
           });
       }
