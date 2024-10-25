@@ -11,6 +11,7 @@ module.exports = {
 - **/stats** : Liste les personnages étant sur le jeu mais qui n'ont pas encore leurs stats sauvegardées ou liste les familiers, armes ou accessoires ayant déjà des stats sauvegardées.
 - **/rank-global** : Classe les personnages, familiers, armes ou accessoires existants par leurs statistiques globales de manière décroissante en top 3, 10 ou 25.
 - **/rank-build** : Classe les personnages, familiers, armes ou accessoires existants par leurs statistiques et le build sélectionné de manière décroissante en top 3, 10 ou 25.
+- **/clean-stats** : Permet de remettre à zéro les stats d'une ou plusieurs tables de la base de données pour une nouvelle saison. Utilisable uniquement par l'être suprême lui-même.
 
 **Utilise chaque commande pour plus de détails sur son utilisation.**
         `;
